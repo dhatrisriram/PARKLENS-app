@@ -1,0 +1,10 @@
+pandas
+networkx
+fastapi
+uvicorn[standard]
+pydantic
+streamlit
+streamlit-folium
+folium
+plotly
+anthropic        # narrative.py only; app runs without it (static fallback)

@@ -1,0 +1,13 @@
+{
+  "total_repeat_vehicles": 35425,
+  "total_repeat_incidents": 101671,
+  "max_offenses_one_vehicle": 55,
+  "pct_violations_by_repeats": 34.1,
+  "total_violations": 298130,
+  "total_h3_cells": 2534,
+  "blind_spot_cells": 620,
+  "top_violation": "WRONG PARKING",
+  "date_range_start": "2023-11-09",
+  "date_range_end": "2024-04-08",
+  "poi_demand_status": "STUB \u2014 Member B to fill from Mappls Nearby API"
+}
