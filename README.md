@@ -259,42 +259,29 @@ This creates the key demo moment:
 
 ```text
 PARKLENS-app/
-│
-├── data/                                  # Data artifacts
-│   ├── raw_violations.csv                 # Raw parking violation dataset (input)
-│   ├── clean_violations.parquet           # Cleaned & feature-engineered data
-│   ├── hotspots.csv                       # Final hotspot table with all pillar outputs
-│   └── mappls_cache.json                  # Cached Mappls API responses (optional)
-│
-├── src/                                   # Core source code
-│   ├── clean.py                           # Data cleaning, parsing and deduplication
-│   ├── features.py                        # H3 indexing, severity, exposure, repeat flags
-│   ├── blindspot.py                       # Poisson-offset model + shadow hotspot detection
-│   ├── deterrence.py                      # Survival analysis and Difference-in-Differences
-│   ├── forecast.py                        # Optional LightGBM hotspot forecasting
-│   ├── mappls_client.py                   # Mappls API wrapper, auth and caching
-│   ├── impact_bpr.py                      # Modified BPR congestion engine + ETA calibration
-│   ├── routing.py                         # Fair VRP patrol deployment
-│   ├── graph.py                           # Corridor graph construction
-│   ├── twin.py                            # Digital twin propagation engine
-│   └── api.py                             # FastAPI backend endpoints
-│
-├── app/                                   # Dashboard and explainability layer
-│   ├── dashboard.py                       # Streamlit interface and guided tour
-│   └── narrative.py                       # LLM-powered "Why this zone?" explanations
-│
-├── deck/                                  # Presentation materials
-│   ├── slides.pdf                         # Final hackathon pitch deck
-│   └── demo_script.md                     # 90-second demo walkthrough
-│
-├── contracts.md                           # Team interface contracts
-├── requirements.txt                       # Python dependencies
-├── README.md                              # Project documentation
-└── LICENSE                                # Open-source license (optional)
+├── app/                          
+│   ├── dashboard.py              # Streamlit app: heatmap, twin UI, deployment panel
+│   └── narrative.py              # Claude API explanations ("why this zone")
+├── data/                         
+│   ├── clean_violations.parquet  # Feature-enriched violation table
+│   ├── hotspots_enriched.csv     # Final hotspot table with all metrics
+│   ├── mappls_cache.json         # Pre-fetched Mappls API responses
+│   └── routing_plan.json         # VRP deployment plan
+├── notebooks/                    
+│   ├── theme1-part1.ipynb        # Data cleaning, blindspot & deterrence models
+│   └── parklens_member_b_final.py# Mappls API pipeline & MBPR impact engine
+├── src/                          
+│   ├── api.py                    # FastAPI: /hotspots /risk /impact /deploy /whatif
+│   ├── impact_bpr.py             # MBPR engine exposing recompute()
+│   ├── routing.py                # Fair VRP patrol deployment logic
+│   ├── graph.py                  # NetworkX corridor graph for the twin
+│   ├── twin.py                   # What-if corridor propagation engine
+│   ├── loader.py                 # Data ingestion & normalization
+│   ├── mappls_client.py          # Mappls API wrapper
+│   └── export_stats.py           # Dashboard stats JSON generator
+└── requirements.txt
+
 ```
-
----
-
 ## 📂 Folder Overview
 
 ### **data/**
