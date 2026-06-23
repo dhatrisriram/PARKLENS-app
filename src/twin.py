@@ -15,8 +15,9 @@ from dataclasses import dataclass
 
 # Make src/ (and the project root) importable no matter where this is launched
 # from, so the flat `import config` / `import loader` style resolves.
-_ROOT = os.path.dirname(os.path.abspath(__file__))
-for _p in (os.path.join(_ROOT, "src"), _ROOT):
+_HERE = os.path.dirname(os.path.abspath(__file__))   # src/
+_ROOT = os.path.dirname(_HERE)                        # project root
+for _p in (_HERE, _ROOT):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
