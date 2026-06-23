@@ -286,7 +286,7 @@ PARKLENS-app/
 
 ### **data/**
 
-Stores the raw dataset and generated artifacts. Intermediate outputs such as cleaned parquet files, hotspot rankings, and cached Mappls responses are persisted here.
+Stores the generated artifacts. Intermediate outputs such as cleaned parquet files, hotspot rankings, and cached Mappls responses are persisted here.
 
 ### **src/**
 
@@ -310,13 +310,8 @@ Interactive Streamlit dashboard and narrative generation layer for explaining ho
 
 * Python 3.10+
 * Mappls API Key
-* Raw violation CSV
+* Raw violation CSV: Due to GitHub file size limits, the raw dataset is not included in this repository.
 
-```
-data/raw_violations.csv
-```
-
----
 
 ## Installation
 
@@ -370,48 +365,81 @@ streamlit run app/dashboard.py
 
 # 📚 References
 
-### Modified BPR Function
+[1] **Gore, N., Arkatkar, S., Joshi, G., & Antoniou, C. (2023).**  
+*"Modified Bureau of Public Roads Link Function."*  
+**Transportation Research Record: Journal of the Transportation Research Board**, 2677(5), 966–990.  
+https://doi.org/10.1177/03611981221138511
 
-Gore, Arkatkar, Joshi & Antoniou (2023)
-
-*Transportation Research Record 2677(5), 966–990*
+> Provides the Modified Bureau of Public Roads (MBPR) functional form used to estimate congestion caused by parking-induced capacity loss.
 
 ---
 
-### South Asian Calibration Constants
+[2] **Anwar, A. H. M. M., Fujiwara, A., & Zhang, J. (2011).**  
+*"Newly Developed Link Performance Functions Incorporating the Influence of On-Street Occupancy for Developing Cities: Study on Dhaka City of Bangladesh."*  
+Proceedings of the 90th Transportation Research Board Annual Meeting.
 
-Anwar, Fujiwara & Zhang (2011)
+> Source of South Asian urban arterial calibration constants used in PARKLENS:
 
-Dhaka Urban Arterials
-
-```
+```text
 α = 3.59
 β = 0.40
 ```
 
 ---
 
-### Causal Congestion Attribution
+[3] **Li et al. (2022).**  
+*"Causal Inference for Curbside Pick-Up and Drop-Off Operations."*  
+arXiv:2206.02164.  
+https://arxiv.org/abs/2206.02164
 
-arXiv:2206.02164
-
-*Curbside Pick-Up and Drop-Off Causal Impact Study*
-
----
-
-### Enforcement Bias and Deterrence Gap
-
-IISc Sustainable Transportation Lab
-
-BTP–IISc CiSTUP MoU (2023)
+> Motivates the causal attribution of congestion impacts and supports the idea of estimating delay due to curbside obstructions.
 
 ---
 
-### Mappls APIs
+[4] **Centre for infrastructure, Sustainable Transportation and Urban Planning (CiSTUP), IISc Bangalore.**  
+**Bangalore Traffic Police – IISc Collaboration (2023).**  
+https://cistup.iisc.ac.in/
 
+> Highlights the challenges of enforcement bias and the need for data-driven parking and traffic interventions.
+
+---
+
+[5] **Mappls APIs Documentation**  
+MapmyIndia Pvt. Ltd.  
 https://about.mappls.com/api/
 
+> APIs used throughout PARKLENS:
+
+- Snap-to-Road API
+- Nearby POI API
+- Predictive ETA API
+- GeoAnalytics API
+- Route Optimization API (VRP)
+- Isopolygon API
+
 ---
+
+## Additional Reading
+
+[6] **Bureau of Public Roads (1964).**  
+*Traffic Assignment Manual.*  
+U.S. Department of Commerce.
+
+> Classical origin of the BPR congestion function.
+
+---
+
+[7] **CiSTUP, IISc Bangalore.**  
+*Sustainable Transportation Research and Policy Initiatives.*
+
+> Research and policy work on sustainable urban mobility and traffic management.
+
+---
+
+[8] **Transportation Research Group of India (TRG).**
+
+> Research on mixed traffic conditions and urban congestion modeling in Indian cities.
+
 
 # 🏁 PARKLENS
 
