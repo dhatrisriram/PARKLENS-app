@@ -120,6 +120,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# ── SIDEBAR ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("### PARKLENS")
     st.caption("A guided tour — just scroll down.")
@@ -127,6 +128,42 @@ with st.sidebar:
                                  else "🟡 sample mode"))
     st.session_state["tile"] = st.text_input("Mappls map tiles (optional)",
                                               value=config.MAPPLS_TILE_URL or "")
+    st.divider()
+
+    # ========== METHODOLOGY EXPANDER (NEW) ==========
+    with st.expander("🛠️ Methodology & Data Flow", expanded=False):
+        st.markdown("""
+        **Data Lineage**
+        * **Base Data:** Bengaluru Traffic Police Jan–May violations (298,450 rows)
+        * **Live Enrichment (Mappls APIs):**
+            * *Snap‑to‑Road & Directions* → road class, lanes, free‑flow speed
+            * *Distance Matrix / Predictive‑ETA* → back‑solve for traffic volume \(V\)
+            * *Nearby POI & GeoAnalytics* → demand anchoring for blind spots
+
+        **Core Models**
+        """)
+
+        # All LaTeX strings are raw to avoid escape warnings
+        st.latex(r"T_a = T_0 \left[ 1 + 3.59 \left(\frac{V}{C - C_{io}}\right)^{0.40} \right]")
+        st.markdown("*Modified‑BPR (Gore et al., 2023) — α=3.59, β=0.40 (Dhaka calibration, Anwar et al.)*")
+
+        st.latex(r"\log(\lambda) = \beta_0 + \beta_1 \cdot \text{POI} + \beta_2 \cdot \text{road} + \log(\text{exposure})")
+        st.markdown("*Poisson regression with exposure offset for de‑biased risk*")
+
+        st.latex(r"\text{score} = \text{risk} \times \text{vehMin} \times \text{severity}")
+        st.markdown("*Impact‑weighted deployment rank*")
+
+        st.latex(r"G = \frac{\sum_i \sum_j |x_i - x_j|}{2n \sum_i x_i}")
+        st.markdown("*Gini coefficient (0 = perfect equality)*")
+
+        st.markdown("""
+        **References**
+        * Gore, Arkatkar, Joshi & Antoniou (2023), *Transp. Res. Rec.* 2677(5)
+        * Anwar, Fujiwara & Zhang (2011) – Dhaka calibration constants
+        * IISc–BTP CiSTUP MoU (Dec 2023) – enforcement context
+        * Mappls API docs: https://about.mappls.com/api/
+        """)
+    # ========== END NEW SECTION ==========
 
 # ── 1 · FIND ─────────────────────────────────────────────────────────────────
 section(1, "Where are the hidden hotspots?",
